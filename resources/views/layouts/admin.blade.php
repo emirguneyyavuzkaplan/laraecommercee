@@ -36,9 +36,6 @@
 
 </div>
 
-
-
-
 <script src="{{asset('admin/vendors/base/vendor.bundle.base.js')}}"></script>
 <script src="{{asset('admin/vendors/datatables.net/jquery.dataTables.js')}}"></script>
 <script src="{{asset('admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js')}}"></script>
@@ -54,5 +51,6 @@
 <script src="{{asset('admin/js/dataTables.bootstrap4.js')}}"></script>
 <!-- End custom js for this page-->
 @livewireScripts
+@stack('script')
 </body>
 </html>
