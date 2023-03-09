@@ -1,7 +1,7 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('dashboard')}}">
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
@@ -33,13 +33,13 @@
             </a>
             <div class="collapse" id="products">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Add Product</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">View Product</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/products/create')}}">Add Product</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/products')}}">View Product</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('brands')}}">
                 <i class="mdi mdi-library-books menu-icon"></i>
                 <span class="menu-title">Brands</span>
             </a>

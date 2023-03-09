@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Livewire\Admin\Brand;
 
 /*
@@ -26,7 +27,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
-    Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index']);
+    //DashBoard Route
+    Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
 
     //Category Routes
     Route::controller(CategoryController::class)->group(function () {
@@ -37,7 +39,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::put('/category/{category}','update');
     });
 
+    //Products Routes
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/products', 'index')->name('product.index');
+        Route::get('/products/create','create')->name('products.create');
+        Route::post('/products','store')->name('product.store');
 
-    Route::get('/brands',App\Http\Livewire\Admin\Brand\Index::class);
+
+    });
+
+    Route::get('/brands',App\Http\Livewire\Admin\Brand\Index::class)->name('brands');
 
 });
