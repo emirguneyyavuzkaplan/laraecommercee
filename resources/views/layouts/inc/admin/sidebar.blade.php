@@ -45,6 +45,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="{{route('colors.index')}}">
+                <i class="mdi mdi-library-books menu-icon"></i>
+                <span class="menu-title">Colors</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
                 <i class="mdi mdi-account-multiple-plus menu-icon"></i>
                 <span class="menu-title">Users</span>
