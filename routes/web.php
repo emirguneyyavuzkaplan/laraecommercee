@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Livewire\Admin\Brand;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,14 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     //DashBoard Route
     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
 
+    Route::controller(SliderController::class)->group(function () {
+
+        Route::get('sliders','index')->name('sliders');
+        Route::get('sliders/create','create')->name('sliders.create');
+        Route::post('sliders/create','store')->name('sliders.store');
+
+    });
+
     //Category Routes
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/category', 'index')->name('category.index');
@@ -51,6 +60,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::get('products/{product_id}/delete','destroy');
         Route::get('/product-image/{product_image_id}/delete','destroyImage');
 
+        //Ajax için olan route
+        Route::post('product-color/{prod_color_id}','updateProdColorQty');
+        Route::get('product-color/{prod_color_id}/delete','deleteProdColor');
+
+
 
     });
     Route::controller(ColorController::class)->group(function ()
@@ -64,6 +78,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
 
     });
+
+
 
 
     Route::get('/brands',App\Http\Livewire\Admin\Brand\Index::class)->name('brands');

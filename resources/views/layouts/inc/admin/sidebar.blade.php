@@ -64,7 +64,7 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('sliders')}}">
                 <i class="mdi mdi-card-bulleted-settings menu-icon"></i>
                 <span class="menu-title">Home Slider</span>
             </a>
