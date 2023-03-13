@@ -31,7 +31,7 @@ class SliderController extends Controller
         $ext=$file->getClientOriginalExtension();
         $filename=time().'.'.$ext;
         $file->move('uploads/slider/',$filename);
-        $validatedData['image']="uploads/slider/.$filename";
+        $validatedData['image']="uploads/slider/$filename";
       }
 
         $validatedData['status']=$request->status==true ? '1':'0';
@@ -67,7 +67,7 @@ class SliderController extends Controller
             $ext=$file->getClientOriginalExtension();
             $filename=time().'.'.$ext;
             $file->move('uploads/slider/',$filename);
-            $validatedData['image']="uploads/slider/.$filename";
+            $validatedData['image']="uploads/slider/$filename";
         }
 
         $validatedData['status']=$request->status==true ? '1':'0';

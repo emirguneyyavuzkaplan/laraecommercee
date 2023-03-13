@@ -36,7 +36,7 @@ class SlidersFormRequest extends FormRequest
             'image'=>[
                 'nullable',
                 'image',
-                'mimes:jpg,jpeg,png',
+                'mimes:jpg,jpeg,png'
             ],
             'status'=>[
                 'nullable',
