@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Livewire\Admin\Brand;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Frontend\FrontendController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +21,11 @@ use App\Http\Controllers\Admin\SliderController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
+
+Route::get('/',[FrontendController::class,'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -36,8 +38,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
     Route::controller(SliderController::class)->group(function () {
 
         Route::get('sliders','index')->name('sliders');
-        Route::get('sliders/create','create')->name('sliders.create');
-        Route::post('sliders/create','store')->name('sliders.store');
+        Route::get('sliders/create','create');
+        Route::post('sliders/create','store');
+        Route::get('sliders/{slider}/edit','edit');
+        Route::put('sliders/{slider}','update');
+        Route::get('sliders/{slider}/delete','destroy');
+
 
     });
 

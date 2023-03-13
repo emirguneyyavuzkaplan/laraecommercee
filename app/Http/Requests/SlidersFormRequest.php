@@ -25,18 +25,18 @@ class SlidersFormRequest extends FormRequest
             'title'=>[
               'required',
               'string',
-              'max:255'
+              'max:255',
             ],
 
             'description'=>[
                 'required',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'image'=>[
                 'nullable',
                 'image',
-                'mimes:jpg,jpeg,png'
+                'mimes:jpg,jpeg,png',
             ],
             'status'=>[
                 'nullable',
