@@ -8,6 +8,17 @@
             </div>
             <form wire:submit.prevent="StoreBrand">
             <div class="modal-body">
+                <div class="mb-3">
+                    <label>Select Category</label>
+                    <select name=""  wire:model.defer="category_id" required class="form-control">
+                        <option value="">--Select Category--</option>
+                        @foreach($categories as $cateItem)
+                        <option value="{{$cateItem->id}}">{{$cateItem->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')<small class="text-danger">{{$message}}</small> @enderror
+                </div>
+
                <div class="mb-3">
                    <label>Brand Name</label>
                    <input type="text"  wire:model.defer="name" class="form-control">
@@ -50,6 +61,16 @@
             <div wire:loading.remove>
             <form wire:submit.prevent="updateBrand">
                 <div class="modal-body">
+                    <div class="mb-3">
+                        <label>Select Category</label>
+                        <select name=""  wire:model.defer="category_id" required class="form-control">
+                            <option value="">--Select Category--</option>
+                            @foreach($categories as $cateItem)
+                                <option value="{{$cateItem->id}}">{{$cateItem->name}}</option>
+                            @endforeach
+                        </select>
+                        @error('category_id')<small class="text-danger">{{$message}}</small> @enderror
+                    </div>
                     <div class="mb-3">
                         <label>Brand Name</label>
                         <input type="text"  wire:model.defer="name" class="form-control">

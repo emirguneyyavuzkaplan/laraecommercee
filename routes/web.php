@@ -25,14 +25,15 @@ use App\Http\Controllers\Frontend\FrontendController;
 
 Auth::routes();
 
+
 Route::get('/',[FrontendController::class,'index']);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 Route::get('collections',[FrontendController::class, 'categories'])->name('categories');
 Route::get('collections/{category_slug}',[FrontendController::class,'products'])->name('products');
 
+
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
