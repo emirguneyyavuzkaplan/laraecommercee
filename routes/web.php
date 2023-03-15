@@ -27,8 +27,9 @@ Auth::routes();
 
 
 Route::get('/',[FrontendController::class,'index']);
-Route::get('collections',[FrontendController::class, 'categories'])->name('categories');
-Route::get('collections/{category_slug}',[FrontendController::class,'products'])->name('products');
+Route::get('/collections',[FrontendController::class, 'categories'])->name('categories');
+Route::get('/collections/{category_slug}',[FrontendController::class,'products'])->name('products');
+Route::get('/collections/{category_slug}/{product_slug}',[FrontendController::class,'productView'])->name('productView');
 
 
 
