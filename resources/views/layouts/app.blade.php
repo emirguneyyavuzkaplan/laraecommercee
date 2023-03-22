@@ -20,7 +20,13 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Styles -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    {{--Owl Carousel --}}
+    <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
+
+
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <!-- Default theme -->
@@ -45,9 +51,11 @@
             alertify.set('notifier','position', 'top-right');
             alertify.notify(event.detail.text,event.detail.type);
         });
-
-
     </script>
+
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    @yield('script')
     @livewireScripts
+@stack('scripts')
 </body>
 </html>

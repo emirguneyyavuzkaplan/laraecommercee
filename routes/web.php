@@ -11,6 +11,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
+use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Admin\OrdersController;
 
 
 /*
@@ -37,8 +39,14 @@ Route::get('/collections/{category_slug}/{product_slug}',[FrontendController::cl
 Route::middleware('auth')->group(function (){
     Route::get('wishlist',[WishlistController::class,'index'])->name('wishlist');
     Route::get('cart',[CartController::class,'index'])->name('cart');
-    Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
+    Route::get('checkout',[CheckoutController::class,'index'])->name('checkout');
+
+    Route::get('orders',[OrderController::class,'index'])->name('orders');
+    Route::get('orders/{orderId}',[OrderController::class,'show'])->name('show');
+
 });
+
+Route::get('thank-you',[FrontendController::class, 'thankyou']);
 
 
 
@@ -93,6 +101,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
 
     });
+
+
+    Route::get('/brands',App\Http\Livewire\Admin\Brand\Index::class)->name('brands');
+
     Route::controller(ColorController::class)->group(function ()
     {
         Route::get('/colors','index')->name('colors.index');
@@ -105,9 +117,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
     });
 
+    //admin Orders Route:
+    Route::controller(OrdersController::class)->group(function ()
+    {
+        Route::get('/orders','index');
+        Route::get('/orders/{orderId}','show');
+        Route::put('/orders/{orderId}','updateOrderStatus');
 
 
-
-    Route::get('/brands',App\Http\Livewire\Admin\Brand\Index::class)->name('brands');
+        Route::get('/invoice/{orderId}','viewInvoice');
+        Route::get('/invoice/{orderId}/generate','generateInvoice');
+    });
 
 });

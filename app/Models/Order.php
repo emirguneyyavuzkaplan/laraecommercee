@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
@@ -21,4 +23,10 @@ class Order extends Model
         'payment_mode',
         'payment_id',
     ];
+
+
+    public function OrderItems():HasMany
+    {
+        return $this->hasMany(Orderitem::class,'order_id','id');
+    }
 }
