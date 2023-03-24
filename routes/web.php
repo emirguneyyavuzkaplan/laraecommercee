@@ -13,6 +13,12 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Livewire\Frontend\UserComponent;
+
+
+
 
 
 /*
@@ -31,12 +37,37 @@ use App\Http\Controllers\Admin\OrdersController;
 Auth::routes();
 
 
-Route::get('/',[FrontendController::class,'index']);
-Route::get('/collections',[FrontendController::class, 'categories'])->name('categories');
-Route::get('/collections/{category_slug}',[FrontendController::class,'products'])->name('products');
-Route::get('/collections/{category_slug}/{product_slug}',[FrontendController::class,'productView'])->name('productView');
+
+
+Route::middleware(['auth:sanctum','verified'])->group(function (){
+
+
+
+    Route::get('profile',UserComponent::class)->name('user.profile');
+    Route::post('profile',[UserComponent::class ,'updateUserDetails'])->name('user.post');
+
+
+});
+
+
+Route::controller(FrontendController::class)->group(function (){
+    Route::get('/','index');
+    Route::get('/collections', 'categories')->name('categories');
+    Route::get('/collections/{category_slug}','products')->name('products');
+    Route::get('/collections/{category_slug}/{product_slug}','productView')->name('productView');
+
+
+    Route::get('/new-arrivals','newArrival')->name('newArrival');
+    Route::get('/featured-products','featuredProducts')->name('featuredProducts');
+
+    Route::get('search','searchProducts');
+
+});
+
+
 
 Route::middleware('auth')->group(function (){
+
     Route::get('wishlist',[WishlistController::class,'index'])->name('wishlist');
     Route::get('cart',[CartController::class,'index'])->name('cart');
     Route::get('checkout',[CheckoutController::class,'index'])->name('checkout');
@@ -44,7 +75,9 @@ Route::middleware('auth')->group(function (){
     Route::get('orders',[OrderController::class,'index'])->name('orders');
     Route::get('orders/{orderId}',[OrderController::class,'show'])->name('show');
 
+    //Route::get('profile',[\App\Http\Controllers\Frontend\UserController::class,'index']);
 });
+
 
 Route::get('thank-you',[FrontendController::class, 'thankyou']);
 
@@ -62,6 +95,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
 
     //DashBoard Route
     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('dashboard');
+
+
+    Route::get('/settings',[SettingController::class,'index'])->name('admin.settings');
+    Route::post('/settings',[SettingController::class,'store'])->name('setting.Store');
 
     Route::controller(SliderController::class)->group(function () {
 
@@ -128,5 +165,20 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function (){
         Route::get('/invoice/{orderId}','viewInvoice');
         Route::get('/invoice/{orderId}/generate','generateInvoice');
     });
+
+
+
+    Route::controller(UserController::class)->group(function ()
+    {
+        Route::get('/users','index');
+        Route::get('/users/create','create');
+        Route::post('/users','store');
+        Route::get('/users/{user_id}/edit' , 'edit');
+        Route::put('users/{user_id}','update');
+        Route::get('users/{user_id}/delete','destroy');
+
+    });
+
+
 
 });

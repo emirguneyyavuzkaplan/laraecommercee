@@ -58,8 +58,8 @@
             </a>
             <div class="collapse" id="users">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#">Add User</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#">View User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/users/create')}}">Add User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{url('admin/users')}}">View User</a></li>
                 </ul>
             </div>
         </li>
@@ -70,7 +70,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.settings')}}">
                 <i class="mdi mdi-settings menu-icon"></i>
                 <span class="menu-title">Site Settings</span>
             </a>

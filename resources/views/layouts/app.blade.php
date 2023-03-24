@@ -20,16 +20,19 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Styles -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+
     {{--Owl Carousel --}}
     <link href="{{asset('assets/css/owl.carousel.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/owl.theme.default.min.css')}}" rel="stylesheet">
+
+    {{--ExZoom-Prod Image --}}
+    <link href="{{asset('assets/exzoom/jquery.exzoom.css')}}" rel="stylesheet">
 
 
     <link href="{{asset('assets/css/custom.css')}}" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
     @livewireStyles
 </head>
@@ -41,6 +44,8 @@
         <main>
             @yield('content')
         </main>
+
+        @include('layouts.inc.frontend.footer')
     </div>
       <!--Scripts -->
 <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
@@ -54,6 +59,9 @@
     </script>
 
     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+
+
+    <script src="{{asset('assets/exzoom/jquery.exzoom.js')}}"></script>
     @yield('script')
     @livewireScripts
 @stack('scripts')
